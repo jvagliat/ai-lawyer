@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentencias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-5">
+        <h1 class="text-3xl font-bold text-center mb-5">Listado de Sentencias</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for sentencia in sentencias %}
+            <div class="bg-white shadow-md rounded p-4">
+                <h2 class="text-xl font-bold">Sentencia: {{ sentencia.numero_sentencia }}</h2>
+                <p><strong>Demandante:</strong> {{ sentencia.nombre_demandante }}</p>
+                <p><strong>Demandado:</strong> {{ sentencia.nombre_demandado }}</p>
+                <p><strong>Expediente:</strong> {{ sentencia.numero_expediente }}</p>
+                <p><strong>Fecha:</strong> {{ sentencia.fecha_publicacion }}</p>
+                <p class="mt-2"><strong>Fundamentos:</strong></p>
+                <ul class="list-disc pl-5">
+                    {% for fundamento in sentencia.fundamentos %}
+                    <li>{{ fundamento }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ sentencia.url_archivo }}" target="_blank" class="text-blue-500 underline mt-3 block">Ver PDF</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
